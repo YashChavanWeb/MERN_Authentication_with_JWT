@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors'); // Import cors
 const userRouter = require('./routes/user.route'); // Ensure this path is correct
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;

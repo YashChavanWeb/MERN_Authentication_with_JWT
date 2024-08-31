@@ -31,8 +31,11 @@ function Signin() {
             const response = await axios.post('http://localhost:3000/api/signin', formData);
 
             if (response.status === 200) {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('username', response.data.username); // Store username
+                const { token, username } = response.data; // Destructure the response
+                localStorage.setItem('token', token);
+                if (username) {
+                    localStorage.setItem('username', username); // Store username if it exists
+                }
                 navigate('/');
             }
         } catch (error) {
@@ -45,6 +48,7 @@ function Signin() {
             }
         }
     };
+
 
     return (
         <div className="min-h-screen bg-purple-50 flex items-center justify-center">
